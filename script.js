@@ -111,7 +111,7 @@ function renderWorkDetail(){
             <div class="work-body">
                 <p>${work.description || 'No description yet.'}</p>
             </div>
-            <a href="mailto:tranthanhquangtrung@email.com?subject=Inquiry: ${encodeURIComponent(work.title)}" class="inquire-btn">Inquire about this artwork</a>
+            <a href="mailto:quangtrungtran.info@gmail.com?subject=Inquiry: ${encodeURIComponent(work.title)}" class="inquire-btn">Inquire about this artwork</a>
             <br><br>
             <a href="gallery.html" class="view-all-btn">← Back to all works</a>
         </div>
