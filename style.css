@@ -1,5 +1,4 @@
 :root {
-    /* === MÀU XANH THAN CHÍNH === */
     --dark-teal-50: #ecf4f5;
     --dark-teal-100: #d1dfe2;
     --dark-teal-200: #a4c0c5;
@@ -31,7 +30,6 @@ body {
     margin: 0 auto;
 }
 
-/* === BRAND LOGO === */
 .brand-top {
     font-size: 32px;
     font-weight: 800;
@@ -52,7 +50,6 @@ body {
     border-radius: 2px;
 }
 
-/* === SEARCH BOX === */
 .search-box {
     font-size: 18px;
     color: var(--dark-teal-700);
@@ -74,7 +71,6 @@ body {
     box-shadow: 0 2px 0 var(--dark-teal-500);
 }
 
-/* === HERO SECTION === */
 .hero h1 {
     font-size: 64px;
     line-height: 1.05;
@@ -112,7 +108,6 @@ body {
     background: linear-gradient(135deg, var(--dark-teal-700), var(--dark-teal-600));
 }
 
-/* === COLLECTION === */
 .collection {
     margin-bottom: 120px;
 }
@@ -133,11 +128,16 @@ body {
     margin-bottom: 48px;
 }
 
-/* === ART GRID & CARDS === */
 .art-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 36px;
+}
+
+.art-card-link {
+    text-decoration: none;
+    display: block;
+    color: inherit;
 }
 
 .art-card {
@@ -188,7 +188,6 @@ body {
     color: var(--dark-teal-700);
 }
 
-/* === LEGAL / LIABILITY STATEMENT === */
 .legal-section {
     margin-bottom: 100px;
     padding: 32px;
@@ -210,11 +209,6 @@ body {
     font-size: 17px;
     color: var(--dark-teal-700);
     line-height: 1.8;
-}
-
-/* === CONTACT === */
-.contact-section {
-    padding-top: 10px;
 }
 
 .contact-section h3 {
@@ -240,13 +234,162 @@ body {
     text-decoration: underline;
 }
 
-/* === RESPONSIVE DESIGN === */
+/* === TRANG CHI TIẾT TÁC PHẨM - THEO MẪU MỚI === */
+.back-link-top {
+    display: inline-flex;
+    align-items: center;
+    color: #111111;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: opacity 0.25s ease;
+}
+.back-link-top::before {
+    content: '←';
+    margin-right: 8px;
+    font-size: 16px;
+}
+.back-link-top:hover {
+    opacity: 0.65;
+}
+
+.work-detail {
+    max-width: 960px;
+    margin: 0 auto 140px;
+}
+
+.work-image-wrap {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+}
+.work-detail-img {
+    width: 100%;
+    min-height: 500px;
+    background: linear-gradient(135deg, var(--dark-teal-200), var(--dark-teal-400));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 24px;
+    object-fit: cover;
+}
+
+.work-author {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999999;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.work-detail h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(32px,5vw,52px);
+    line-height: 1.2;
+    color: #111111;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+.work-date {
+    font-size: 14px;
+    color: #999999;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 40px;
+    display: block;
+}
+
+.work-body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333333;
+    margin-bottom: 48px;
+}
+.work-body p {
+    margin-bottom: 1.2em;
+}
+.work-body p:first-of-type::first-letter {
+    font-size: 3.6em;
+    float: left;
+    line-height: 1;
+    margin: 0 0.18em 0 0;
+    font-weight: 500;
+    color: #111;
+}
+
+.inquire-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    border: 1px solid #111;
+    border-radius: 50px;
+    background: transparent;
+    color: #111;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    margin-bottom: 60px;
+}
+.inquire-btn::after {
+    content: '→';
+    margin-left: 10px;
+    font-size: 12px;
+}
+.inquire-btn:hover {
+    background: #111;
+    color: #fff;
+}
+
+.copy-link-box {
+    display: flex;
+    gap: 10px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+}
+.link-input {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f9f9f9;
+    color: #444;
+}
+.copy-btn {
+    padding: 12px 24px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background .25s;
+}
+.copy-btn:hover {
+    background: #444;
+}
+.copy-btn.copied {
+    background: #2f855a;
+}
+
 @media (max-width: 992px) {
     .hero h1 { font-size: 52px; }
 }
 
 @media (max-width: 768px) {
-    body { padding: 28px 20px; }
+    body {
+        padding: 28px 20px;
+    }
     .brand-top { font-size: 26px; margin-bottom: 60px; }
     .hero h1 { font-size: 40px; }
     .subtitle { font-size: 19px; }
@@ -257,5 +400,9 @@ body {
     .art-img { height: 260px; }
     .legal-section { padding: 22px; }
     .legal-box { font-size: 16px; }
-  }
-
+    .work-detail { margin-bottom: 100px; }
+    .work-detail-img { min-height: 320px; }
+    .work-body { font-size: 17px; }
+    .copy-link-box { flex-direction: column; }
+    .inquire-btn { width: 100%; justify-content: center; }
+}
