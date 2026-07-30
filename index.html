@@ -51,6 +51,8 @@
             </div>
         </div>
     </header>
+
+    <!-- Trang chủ & Portfolio -->
     <div id="home-view">
         <section id="home" class="pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 relative overflow-hidden">
             <div class="max-w-4xl mx-auto text-center relative z-10">
@@ -60,21 +62,24 @@
                 <a href="#portfolio" class="px-8 py-3.5 bg-brand-accent text-black font-bold rounded-lg hover:bg-brand-accentHover transition-colors shadow-[0_0_20px_rgba(0,242,254,0.3)]"><i class="fa-solid fa-palette mr-2"></i> Khám phá Gallery</a>
             </div>
         </section>
+
         <section id="portfolio" class="py-24 px-4">
             <div class="max-w-7xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Portfolio Showcase</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Portfolio Showcase</h2>
                 <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div id="art-card-1" class="bg-brand-card border border-brand-border rounded-xl overflow-hidden group hover:-translate-y-2 transition-all cursor-pointer" onclick="openDetailView({ id: '1', title: 'Thực Thể Chiều Không Gian', date: '30/07/2026', category: '3D Art', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop', desc: 'Nghiên cứu về ánh sáng và hình khối trong không gian đa chiều.' })">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" class="w-full h-64 object-cover">
+                    <!-- Thẻ mẫu ban đầu -->
+                    <div id="art-card-1" class="bg-brand-card border border-brand-border rounded-xl overflow-hidden group hover:-translate-y-2 transition-all cursor-pointer" onclick="openDetailView('1')">
+                        <img id="img-card-1" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" class="w-full h-64 object-cover">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-white mb-1 art-title-text">Thực Thể Chiều Không Gian</h3>
-                            <p class="text-xs text-brand-accent mb-3 art-date-text">30/07/2026</p>
-                            <p class="text-gray-400 text-sm art-desc-text">Nghiên cứu về ánh sáng và hình khối trong không gian đa chiều.</p>
+                            <h3 id="title-card-1" class="text-xl font-bold text-white mb-1">Thực Thể Chiều Không Gian</h3>
+                            <p id="date-card-1" class="text-xs text-brand-accent mb-3"><i class="fa-regular fa-calendar mr-1"></i> 30/07/2026</p>
+                            <p id="desc-card-1" class="text-gray-400 text-sm line-clamp-2">Nghiên cứu về ánh sáng và hình khối trong không gian đa chiều.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         <section id="about" class="py-24 px-4 bg-brand-card/50">
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="bg-brand-dark p-8 rounded-2xl border border-brand-border">
@@ -87,39 +92,211 @@
                 </div>
             </div>
         </section>
+
+        <!-- KHU VỰC ADMIN -->
         <section id="admin-section" class="py-24 px-4 bg-brand-card border-t-2 border-brand-accent hidden">
             <div class="max-w-4xl mx-auto">
-                <button onclick="openUploadModal()" class="px-8 py-3.5 bg-brand-accent text-black font-bold rounded-xl mb-6">Thêm Tác Phẩm Mới</button>
-                <div id="admin-art-list" class="bg-brand-dark border border-brand-border rounded-xl p-4">
-                    <div id="admin-item-1" class="flex justify-between items-center py-2">
-                        <span>Thực Thể Chiều Không Gian</span>
-                        <button onclick="deleteArtCard('1')" class="text-red-400">Xóa</button>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-white">Quản Trị Tác Phẩm</h2>
+                    <button onclick="openModalForAdd()" class="px-6 py-2.5 bg-brand-accent text-black font-bold rounded-xl text-sm hover:bg-brand-accentHover transition-colors"><i class="fa-solid fa-plus mr-1"></i> Thêm Mới</button>
+                </div>
+                <div id="admin-art-list" class="bg-brand-dark border border-brand-border rounded-xl p-4 space-y-3">
+                    <div id="admin-item-1" class="flex justify-between items-center py-2 border-b border-brand-border last:border-0">
+                        <span class="text-white font-medium text-sm">Thực Thể Chiều Không Gian</span>
+                        <div class="flex gap-3">
+                            <button onclick="openModalForEdit('1')" class="text-brand-accent text-sm hover:underline"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+                            <button onclick="deleteArtCard('1')" class="text-red-400 text-sm hover:underline"><i class="fa-solid fa-trash"></i> Xóa</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
+
+    <!-- Trang xem chi tiết (Đã có thêm ngày đăng) -->
     <div id="detail-view" class="hidden pt-32 pb-24 px-4 min-h-screen max-w-4xl mx-auto">
-        <button onclick="showHomeView(event)" class="text-brand-accent mb-8"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
-        <img id="detail-img" class="w-full max-h-[600px] object-contain bg-black mb-6">
-        <h1 id="detail-title" class="text-3xl font-bold text-white mb-4"></h1>
-        <p id="detail-desc" class="text-gray-300"></p>
+        <button onclick="showHomeView(event)" class="text-brand-accent mb-6 font-medium"><i class="fa-solid fa-arrow-left mr-2"></i> Quay lại</button>
+        <img id="detail-img" class="w-full max-h-[600px] object-contain bg-black rounded-xl border border-brand-border mb-6">
+        <h1 id="detail-title" class="text-3xl font-bold text-white mb-2"></h1>
+        <p id="detail-date" class="text-xs text-brand-accent mb-4"><i class="fa-regular fa-calendar mr-1"></i> <span id="detail-date-text"></span></p>
+        <p id="detail-desc" class="text-gray-300 leading-relaxed"></p>
     </div>
+
+    <!-- Modal Thêm / Sửa Tác Phẩm -->
+    <div id="art-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border rounded-2xl w-full max-w-lg p-6 relative">
+            <h3 id="modal-title" class="text-xl font-bold text-white mb-4">Thêm Tác Phẩm Mới</h3>
+            <input type="hidden" id="edit-art-id">
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Tên tác phẩm</label>
+                    <input type="text" id="input-title" class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Link hình ảnh</label>
+                    <input type="text" id="input-img" class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Ngày đăng</label>
+                    <input type="text" id="input-date" class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent" placeholder="Ví dụ: 30/07/2026">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Mô tả chi tiết</label>
+                    <textarea id="input-desc" rows="3" class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent"></textarea>
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 mt-6">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-lg text-gray-400 text-sm hover:text-white">Hủy</button>
+                <button onclick="saveArtWork()" class="px-6 py-2 bg-brand-accent text-black font-bold rounded-lg text-sm hover:bg-brand-accentHover">Lưu</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="bg-brand-dark border-t border-brand-border py-8 text-center text-xs text-gray-600">
         <p>&copy; 2026 Enkai Art Agency. Trần Quang Trung.</p>
         <p class="mt-2 max-w-2xl mx-auto px-4">Tuyên bố trách nhiệm mặc định: Nội dung thuộc bản quyền của Enkai Art Agency. Mọi hành vi sao chép thương mại đều bị nghiêm cấm.</p>
     </footer>
+
     <script>
-        function toggleAdminPanel(e) { e.preventDefault(); document.getElementById('admin-section').classList.toggle('hidden'); }
-        function showHomeView(e) { if(e)e.preventDefault(); document.getElementById('detail-view').classList.add('hidden'); document.getElementById('home-view').classList.remove('hidden'); }
-        function openDetailView(data) {
-            document.getElementById('detail-img').src = data.image;
-            document.getElementById('detail-title').innerText = data.title;
-            document.getElementById('detail-desc').innerText = data.desc;
+        // Dữ liệu lưu trữ các tác phẩm
+        let artDatabase = {
+            '1': {
+                title: 'Thực Thể Chiều Không Gian',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop',
+                date: '30/07/2026',
+                desc: 'Nghiên cứu về ánh sáng và hình khối trong không gian đa chiều.'
+            }
+        };
+
+        function toggleAdminPanel(e) { 
+            e.preventDefault(); 
+            document.getElementById('admin-section').classList.toggle('hidden'); 
+        }
+
+        function showHomeView(e) { 
+            if(e) e.preventDefault(); 
+            document.getElementById('detail-view').classList.add('hidden'); 
+            document.getElementById('home-view').classList.remove('hidden'); 
+        }
+
+        function openDetailView(id) {
+            const art = artDatabase[id];
+            if(!art) return;
+            document.getElementById('detail-img').src = art.image;
+            document.getElementById('detail-title').innerText = art.title;
+            document.getElementById('detail-date-text').innerText = art.date;
+            document.getElementById('detail-desc').innerText = art.desc;
             document.getElementById('home-view').classList.add('hidden');
             document.getElementById('detail-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
         }
-        function deleteArtCard(id) { document.getElementById('art-card-'+id)?.remove(); document.getElementById('admin-item-'+id)?.remove(); }
+
+        function openModalForAdd() {
+            document.getElementById('modal-title').innerText = 'Thêm Tác Phẩm Mới';
+            document.getElementById('edit-art-id').value = '';
+            document.getElementById('input-title').value = '';
+            document.getElementById('input-img').value = '';
+            // Tự động điền ngày hiện tại
+            const today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const yyyy = today.getFullYear();
+            document.getElementById('input-date').value = dd + '/' + mm + '/' + yyyy;
+            document.getElementById('input-desc').value = '';
+            document.getElementById('art-modal').classList.remove('hidden');
+        }
+
+        function openModalForEdit(id) {
+            const art = artDatabase[id];
+            if(!art) return;
+            document.getElementById('modal-title').innerText = 'Chỉnh Sửa Tác Phẩm';
+            document.getElementById('edit-art-id').value = id;
+            document.getElementById('input-title').value = art.title;
+            document.getElementById('input-img').value = art.image;
+            document.getElementById('input-date').value = art.date;
+            document.getElementById('input-desc').value = art.desc;
+            document.getElementById('art-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('art-modal').classList.add('hidden');
+        }
+
+        function saveArtWork() {
+            const id = document.getElementById('edit-art-id').value;
+            const title = document.getElementById('input-title').value;
+            const image = document.getElementById('input-img').value;
+            const date = document.getElementById('input-date').value;
+            const desc = document.getElementById('input-desc').value;
+
+            if(!title || !image) {
+                alert('Vui lòng nhập tên và link hình ảnh!');
+                return;
+            }
+
+            if(id) {
+                // Cập nhật tác phẩm cũ
+                artDatabase[id] = { title, image, date, desc };
+                updateUI(id, title, image, date, desc, false);
+            } else {
+                // Thêm tác phẩm mới
+                const newId = Date.now().toString();
+                artDatabase[newId] = { title, image, date, desc };
+                updateUI(newId, title, image, date, desc, true);
+            }
+            closeModal();
+        }
+
+        function updateUI(id, title, image, date, desc, isNew) {
+            if(isNew) {
+                // Thêm HTML vào Gallery Grid
+                const galleryGrid = document.getElementById('gallery-grid');
+                const cardHTML = `
+                    <div id="art-card-${id}" class="bg-brand-card border border-brand-border rounded-xl overflow-hidden group hover:-translate-y-2 transition-all cursor-pointer" onclick="openDetailView('${id}')">
+                        <img id="img-card-${id}" src="${image}" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 id="title-card-${id}" class="text-xl font-bold text-white mb-1">${title}</h3>
+                            <p id="date-card-${id}" class="text-xs text-brand-accent mb-3"><i class="fa-regular fa-calendar mr-1"></i> ${date}</p>
+                            <p id="desc-card-${id}" class="text-gray-400 text-sm line-clamp-2">${desc}</p>
+                        </div>
+                    </div>
+                `;
+                galleryGrid.insertAdjacentHTML('afterbegin', cardHTML);
+
+                // Thêm HTML vào danh sách quản lý Admin
+                const adminList = document.getElementById('admin-art-list');
+                const adminHTML = `
+                    <div id="admin-item-${id}" class="flex justify-between items-center py-2 border-b border-brand-border last:border-0">
+                        <span class="text-white font-medium text-sm">${title}</span>
+                        <div class="flex gap-3">
+                            <button onclick="openModalForEdit('${id}')" class="text-brand-accent text-sm hover:underline"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+                            <button onclick="deleteArtCard('${id}')" class="text-red-400 text-sm hover:underline"><i class="fa-solid fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                `;
+                adminList.insertAdjacentHTML('afterbegin', adminHTML);
+            } else {
+                // Cập nhật lại giao diện thẻ ngoài trang chủ
+                document.getElementById(`img-card-${id}`).src = image;
+                document.getElementById(`title-card-${id}`).innerText = title;
+                document.getElementById(`date-card-${id}`).innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${date}`;
+                document.getElementById(`desc-card-${id}`).innerText = desc;
+
+                // Cập nhật lại tên trong danh sách admin
+                const adminItem = document.getElementById(`admin-item-${id}`);
+                if(adminItem) {
+                    adminItem.querySelector('span').innerText = title;
+                }
+            }
+        }
+
+        function deleteArtCard(id) {
+            if(confirm('Bạn có chắc muốn xóa tác phẩm này không?')) {
+                document.getElementById('art-card-'+id)?.remove();
+                document.getElementById('admin-item-'+id)?.remove();
+                delete artDatabase[id];
+            }
+        }
     </script>
 </body>
 </html>
