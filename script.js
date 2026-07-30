@@ -25,14 +25,16 @@ function formatDateShow(dateStr) {
 }
 
 // ========================
-// TRANG INDEX
+// TRANG INDEX — TRỞ LẠI NHƯ CŨ + NỘI DUNG ĐỘNG
 // ========================
 function renderIndexGallery() {
     const grid = document.querySelector('.art-grid');
     if(!grid) return;
     const works = getWorks();
     if(!works.length) {
-        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-gray);">Chưa có tác phẩm nào được thêm.</p>';
+        grid.innerHTML = `
+        <!-- Ví dụ hiển thị khi chưa có gì, bạn có thể xoá đi -->
+        <p style="grid-column:1/-1;text-align:center;color:var(--text-gray);">Chưa có tác phẩm nào. Vào admin.html để thêm nhé!</p>`;
         return;
     }
     grid.innerHTML = works.map(work => `
@@ -53,6 +55,7 @@ function renderIndexGallery() {
     `).join('');
 }
 
+// Tìm kiếm giữ nguyên như cũ
 document.addEventListener('input', e => {
     if(e.target.classList.contains('search-box')){
         const kw = e.target.value.toLowerCase().trim();
@@ -137,7 +140,7 @@ function initWorkTabsAndCopy(){
 }
 
 // ========================
-// TRANG ADMIN
+// TRANG ADMIN — THÊM / SỬA / XOÁ
 // ========================
 function renderAdminList() {
     const listBox = document.getElementById('admin-work-list');
@@ -224,13 +227,13 @@ if(form){
 }
 
 // ========================
-// KHỞI TẠO TRANG
+// KHỞI TẠO ĐÚNG TRANG
 // ========================
 if(document.querySelector('.admin-page')){
-    // Đã chạy ở phần admin
+    // Trang Admin đã tự chạy
 } else if(document.querySelector('.gallery')){
-    renderIndexGallery();
+    renderIndexGallery(); // Trang Chủ KHỞI ĐỘNG ĐÚNG NHƯ CŨ
 } else if(document.querySelector('.work-detail')){
     renderWorksPage();
-                             }
-    
+        }
+                                                   
