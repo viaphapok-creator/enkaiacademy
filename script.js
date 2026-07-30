@@ -1,27 +1,50 @@
 // ==========================================
-// 📌 DANH SÁCH TÁC PHẨM — THÊM/SỬA Ở ĐÂY
+// 📌 ĐỌC DỮ LIỆU TỪ FILE RIÊNG works.json
 // ==========================================
-const WORKS = [
-  // ⬇️ BẠN THÊM TÁC PHẨM MỚI BẮT ĐẦU TỪ DÒNG NÀY ⬇️
-  {
-    id: 'work-001',
-    title: 'Tên tác phẩm ví dụ',
-    type: 'Ảnh Nghệ Thuật',
-    date: '2026-07-30',
-    media: 'https://i.imgur.com/abc123.jpg', // Link ảnh/video của bạn
-    mediaType: 'image', // hoặc 'video'
-    description: 'Mô tả chi tiết về tác phẩm này, câu chuyện đằng sau, ý nghĩa...'
+let WORKS = [];
+
+async function loadWorksData() {
+  try {
+    const res = await fetch('works.json?t=' + Date.now());
+    if (!res.ok) throw new Error('File not found');
+    WORKS = await res.json();
+  } catch (err) {
+    console.error('❌ Lỗi đọc works.json:', err);
+    WORKS = [];
   }
-  // ⬆️ KẾT THÚC Ở ĐÂY — PHÂN TÁCH BẰNG DẤU PHẨM PHẨY , ⬆️
-];
+}
 
 // ========================
-// KHỞI TẠO & HIỂN THỊ
+// 🚀 KHỞI CHẠY TOÀN BỘ
 // ========================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadWorksData(); // Đợi tải dữ liệu xong
+  initFeaturedWorks();
   initGalleryPage();
   initWorkPage();
 });
+
+// === TRANG CHỦ: HIỂN THỊ TÁC PHẨM NỔI BẬT ===
+function initFeaturedWorks() {
+  const container = document.getElementById('featuredGrid');
+  if (!container || !WORKS.length) return;
+
+  const featured = WORKS.slice(0,3);
+  container.innerHTML = featured.map(work => `
+    <div class="art-card" onclick="window.location.href='work.html?id=${work.id}'">
+      <div class="art-media">
+        ${work.mediaType === 'video' 
+          ? `<video autoplay muted loop playsinline src="${work.media}"></video>`
+          : `<img src="${work.media}" alt="${work.title}" loading="lazy">`
+        }
+      </div>
+      <div class="art-info">
+        <h3>${work.title}</h3>
+        <span class="art-tag">${work.type}</span>
+      </div>
+    </div>
+  `).join('');
+}
 
 // === TRANG DANH SÁCH ===
 function initGalleryPage() {
@@ -30,7 +53,6 @@ function initGalleryPage() {
 
   renderGrid(WORKS);
 
-  // Tìm kiếm
   const searchBox = document.querySelector('.search-box');
   if (searchBox) {
     searchBox.addEventListener('input', e => {
@@ -46,15 +68,15 @@ function initGalleryPage() {
 function renderGrid(list) {
   const grid = document.getElementById('artGrid');
   if (!list.length) {
-    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--text-gray);">Chưa có tác phẩm nào được đăng.</p>`;
+    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--text-gray);padding:40px 0;">Chưa có tác phẩm nào được đăng.<br>Hãy thêm vào file works.json</p>`;
     return;
   }
   grid.innerHTML = list.map(work => `
     <div class="art-card" onclick="window.location.href='work.html?id=${work.id}'">
       <div class="art-media">
         ${work.mediaType === 'video' 
-          ? `<video autoplay muted loop playsinline src="${work.media}"></video>`
-          : `<img src="${work.media}" alt="${work.title}" loading="lazy">`
+          ? `<video autoplay muted loop playsinline preload="metadata" src="${work.media}"></video>`
+          : `<img src="${work.media}" alt="${work.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500/211d14/c8a962?text=Link+LỖI+⚠️'">`
         }
       </div>
       <div class="art-info">
@@ -83,7 +105,7 @@ function initWorkPage() {
   }
 
   if (!work) {
-    container.innerHTML = `<div style="text-align:center;padding:60px;color:var(--text-gray);">Không tìm thấy tác phẩm này.<br><a href="gallery.html" style="color:var(--gold);margin-top:20px;display:inline-block">Quay lại thư viện</a></div>`;
+    container.innerHTML = `<div style="text-align:center;padding:60px;color:var(--text-gray);">❌ Không tìm thấy tác phẩm này.<br><a href="gallery.html" style="color:var(--gold);margin-top:20px;display:inline-block">← Quay lại thư viện</a></div>`;
     return;
   }
 
@@ -95,15 +117,15 @@ function initWorkPage() {
     <div class="work-single">
       <div class="work-image-wrap">
         ${work.mediaType === 'video'
-          ? `<video class="work-detail-img" controls src="${work.media}"></video>`
-          : `<img src="${work.media}" alt="${work.title}" class="work-detail-img">`
+          ? `<video class="work-detail-img" controls preload="metadata" src="${work.media}"></video>`
+          : `<img src="${work.media}" alt="${work.title}" class="work-detail-img" loading="lazy">`
         }
       </div>
       <p class="work-author">Trần Quang Trung</p>
       <h1>${work.title}</h1>
       <span class="work-date">${dateShow}</span>
       <div class="work-body">${work.description.replace(/\n/g,'<br>')}</div>
-      <a href="mailto:?subject=${encodeURIComponent('Liên hệ về tác phẩm: ' + work.title)}&body=${encodeURIComponent('Xin chào Trần Quang Trung,%0D%0A%0D%0A')}" class="inquire-btn">Liên hệ về tác phẩm</a>
+      <a href="mailto:?subject=${encodeURIComponent('Liên hệ: ' + work.title)}&body=${encodeURIComponent('Xin chào Trần Quang Trung,%0D%0A%0D%0A')}" class="inquire-btn">Liên hệ về tác phẩm</a>
     </div>
   `;
 }
