@@ -1,386 +1,71 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enkai Art Agency | Trần Quang Trung</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#050b14',
-                            card: '#0a1526',
-                            border: '#1a2c4a',
-                            accent: '#00f2fe',
-                            accentHover: '#4facfe'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .glass-nav { background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(12px); }
-        .text-gradient { background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        ::-webkit-calendar-picker-indicator { filter: invert(1); opacity: 0.5; cursor: pointer; }
-    </style>
+    <title>Enkai Art Agency</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-brand-dark text-gray-300 antialiased selection:bg-brand-accent selection:text-black relative">
-    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-brand-border transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0">
-                    <a href="#" onclick="showHomeView(event)" class="flex items-center gap-2">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-500 flex items-center justify-center text-white font-bold text-xl">E</div>
-                        <span class="font-bold text-xl text-white tracking-wider">Enkai Art<span class="text-brand-accent">.</span></span>
-                    </a>
-                </div>
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#home" onclick="showHomeView(event)" class="text-sm font-medium hover:text-brand-accent transition-colors">Trang chủ</a>
-                    <a href="#portfolio" onclick="showHomeView(event)" class="text-sm font-medium hover:text-brand-accent transition-colors">Tác phẩm</a>
-                    <a href="#about" onclick="showHomeView(event)" class="text-sm font-medium hover:text-brand-accent transition-colors">Giới thiệu</a>
-                    <a href="#services" onclick="showHomeView(event)" class="text-sm font-medium hover:text-brand-accent transition-colors">Dịch vụ</a>
-                    <a href="#" onclick="requestAdminAccess(event)" class="text-[10px] text-gray-700 hover:text-brand-accent transition-colors tracking-widest uppercase font-bold">Admin</a>
-                </nav>
+<body>
+
+    <div class="brand-top">Enkai</div>
+    <input type="text" class="search-box" placeholder="Type to explore our collection">
+
+    <section class="hero">
+        <h1>Art Agency</h1>
+        <span class="subtitle">Fine Digital Arts & Modern Masterpieces</span>
+        <a href="#collection" class="discover-link">Discover</a>
+    </section>
+
+    <section class="collection" id="collection">
+        <h2>Season 01<br>Collection</h2>
+        <p>Shop exclusive digital prints and premium physical canvases. Limited edition works by Trần Quang Trung.</p>
+
+        <div class="art-grid">
+            <div class="art-card">
+                <div class="art-img">Tác phẩm nghệ thuật</div>
+                <h4 class="art-name">Work #001</h4>
+                <p class="art-desc">Limited edition / 50 copies</p>
+                <p class="art-price">Digital & Canvas available</p>
+            </div>
+            <div class="art-card">
+                <div class="art-img">Tác phẩm nghệ thuật</div>
+                <h4 class="art-name">Work #002</h4>
+                <p class="art-desc">Limited edition / 30 copies</p>
+                <p class="art-price">Digital & Canvas available</p>
+            </div>
+            <div class="art-card">
+                <div class="art-img">Tác phẩm nghệ thuật</div>
+                <h4 class="art-name">Work #003</h4>
+                <p class="art-desc">Limited edition / 25 copies</p>
+                <p class="art-price">Digital & Canvas available</p>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Trang chủ & Portfolio -->
-    <div id="home-view">
-        <section id="home" class="pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 relative overflow-hidden">
-            <div class="max-w-4xl mx-auto text-center relative z-10">
-                <span class="px-4 py-1.5 rounded-full border border-brand-border bg-brand-card/50 text-xs font-semibold tracking-widest uppercase mb-6 inline-block text-gray-400">✨ Enkai Art Agency • Creative Studio</span>
-                <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">Không Gian Trưng Bày <br> Nghệ Thuật Số <span class="text-gradient">Đỉnh Cao</span></h1>
-                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Được sáng lập bởi <strong>Trần Quang Trung</strong>. Nơi trưng bày, lưu trữ và chia sẻ những kiệt tác Visual Art, 3D Graphics và Motion Animations độ phân giải cao.</p>
-                <a href="#portfolio" class="px-8 py-3.5 bg-brand-accent text-black font-bold rounded-lg hover:bg-brand-accentHover transition-colors shadow-[0_0_20px_rgba(0,242,254,0.3)]"><i class="fa-solid fa-palette mr-2"></i> Khám phá Gallery</a>
-            </div>
-        </section>
-
-        <section id="portfolio" class="py-24 px-4">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Portfolio Showcase</h2>
-                <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Thẻ mẫu ban đầu -->
-                    <div id="art-card-1" class="bg-brand-card border border-brand-border rounded-xl overflow-hidden group hover:-translate-y-2 transition-all cursor-pointer" onclick="openDetailView('1')">
-                        <img id="img-card-1" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h3 id="title-card-1" class="text-xl font-bold text-white mb-1">Thực Thể Chiều Không Gian</h3>
-                            <p id="date-card-1" class="text-xs text-brand-accent mb-3"><i class="fa-regular fa-calendar mr-1"></i> 30/07/2026</p>
-                            <p id="desc-card-1" class="text-gray-400 text-sm line-clamp-2">Nghiên cứu về ánh sáng và hình khối trong không gian đa chiều.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="py-24 px-4 bg-brand-card/50">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-brand-dark p-8 rounded-2xl border border-brand-border">
-                    <h3 class="text-xl font-bold text-white mb-4">Về Chủ Sở Hữu: Trần Quang Trung</h3>
-                    <p class="text-gray-400 mb-3">Nhà sáng lập Enkai Art Agency với tầm nhìn chiến lược đột phá và niềm đam mê mãnh liệt dành cho nghệ thuật thị giác hiện đại.</p>
-                    <p class="text-gray-400 mb-3">Là bộ óc sáng tạo và là người định hình nên giá trị cốt lõi của thương hiệu, anh trực tiếp nắm giữ quyền sở hữu tối cao đối với toàn bộ hệ thống tài sản số.</p>
-                    <p class="text-gray-400 mb-3">Bằng sự tâm huyết và tư duy nghệ thuật khác biệt, Trần Quang Trung chính là bảo chứng vững chắc cho tính nguyên bản, sự độc quyền và đẳng cấp của từng sản phẩm.</p>
-                    <p class="text-gray-400">Mọi quyền lợi hợp pháp, thành quả sáng tạo và trí tuệ đằng sau hệ thống này đều thuộc về quyền định đoạt duy nhất của nhà sáng lập Trần Quang Trung.</p>
-                </div>
-                <div class="bg-brand-dark p-8 rounded-2xl border border-brand-border">
-                    <h3 class="text-xl font-bold text-white mb-4">Về Tác Phẩm</h3>
-                    <p class="text-gray-400 mb-3">Bộ sưu tập kỹ thuật số độc bản chất lượng cao, là sự kết tinh hoàn hảo giữa tư duy sáng tạo đỉnh cao, công nghệ hiện đại và khối óc trí tuệ đầy tâm huyết.</p>
-                    <p class="text-gray-400">Mỗi tác phẩm trong bộ sưu tập không chỉ mang giá trị thẩm mỹ vượt thời gian mà còn chứa đựng tài sản trí tuệ độc quyền, khẳng định dấu ấn cá nhân mạnh mẽ và vị thế tiên phong trong lĩnh vực nghệ thuật số.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- KHU VỰC ADMIN (Bảo mật bằng đăng nhập) -->
-        <section id="admin-section" class="py-24 px-4 bg-brand-card border-t-2 border-brand-accent hidden">
-            <div class="max-w-4xl mx-auto">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-white">Quản Trị Tác Phẩm <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded ml-2">Đã đăng nhập</span></h2>
-                    <div class="flex gap-3">
-                        <button onclick="openModalForAdd()" class="px-5 py-2.5 bg-brand-accent text-black font-bold rounded-xl text-sm hover:bg-brand-accentHover transition-colors"><i class="fa-solid fa-plus mr-1"></i> Thêm Mới</button>
-                        <button onclick="logoutAdmin()" class="px-4 py-2.5 bg-red-500/20 text-red-400 font-bold rounded-xl text-sm hover:bg-red-500/30 transition-colors">Đăng Xuất</button>
-                    </div>
-                </div>
-                <div id="admin-art-list" class="bg-brand-dark border border-brand-border rounded-xl p-4 space-y-3">
-                    <div id="admin-item-1" class="flex justify-between items-center py-2 border-b border-brand-border last:border-0">
-                        <span class="text-white font-medium text-sm">Thực Thể Chiều Không Gian</span>
-                        <div class="flex gap-3">
-                            <button onclick="openModalForEdit('1')" class="text-brand-accent text-sm hover:underline"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
-                            <button onclick="deleteArtCard('1')" class="text-red-400 text-sm hover:underline"><i class="fa-solid fa-trash"></i> Xóa</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Trang xem chi tiết (Có nút Lấy Link & Tải ảnh) -->
-    <div id="detail-view" class="hidden pt-32 pb-24 px-4 min-h-screen max-w-4xl mx-auto">
-        <div class="flex justify-between items-center mb-6">
-            <button onclick="showHomeView(event)" class="text-brand-accent font-medium hover:underline"><i class="fa-solid fa-arrow-left mr-2"></i> Quay lại</button>
-            <div class="flex gap-3">
-                <button onclick="copyArtLink()" class="px-4 py-2 bg-brand-card border border-brand-border text-white text-xs font-semibold rounded-lg hover:border-brand-accent transition-colors"><i class="fa-solid fa-link mr-1.5 text-brand-accent"></i> Sao chép link</button>
-                <button onclick="downloadArtImage()" class="px-4 py-2 bg-brand-accent text-black text-xs font-bold rounded-lg hover:bg-brand-accentHover transition-colors"><i class="fa-solid fa-download mr-1.5"></i> Tải ảnh xuống</button>
-            </div>
+    <section class="legal-section">
+        <h3>Tuyên bố trách nhiệm</h3>
+        <div class="legal-box">
+            <p>© 2025 Enkai Art Agency – Tất cả nội dung, hình ảnh, tác phẩm nghệ thuật trên trang web đều thuộc quyền sở hữu trí tuệ của <strong>Trần Quang Trung</strong> và Enkai Art Agency.</p>
+            <br>
+            <p>❌ Nghiêm cấm sao chép, tái sản xuất, phân phối, chỉnh sửa hoặc sử dụng bất kỳ nội dung nào cho mục đích thương mại nếu chưa có sự chấp thuận bằng văn bản từ chủ sở hữu.</p>
+            <br>
+            <p>ℹ️ Thông tin sản phẩm, giá cả và mô tả chỉ mang tính tham khảo. Chúng tôi nỗ lực cập nhật chính xác nhưng không đảm bảo không có sai sót. Enkai Art Agency và chủ sở hữu không chịu trách nhiệm về các vấn đề phát sinh từ việc sử dụng thông tin trên trang web khi chưa xác nhận trực tiếp.</p>
+            <br>
+            <p>✅ Khi mua sản phẩm, hợp đồng giao dịch chính thức sẽ được xác nhận riêng qua email hoặc hình thức liên hệ được cung cấp bên dưới.</p>
         </div>
-        <img id="detail-img" class="w-full max-h-[600px] object-contain bg-black rounded-xl border border-brand-border mb-6">
-        <h1 id="detail-title" class="text-3xl font-bold text-white mb-2"></h1>
-        <p id="detail-date" class="text-xs text-brand-accent mb-4"><i class="fa-regular fa-calendar mr-1"></i> <span id="detail-date-text"></span></p>
-        <p id="detail-desc" class="text-gray-300 leading-relaxed"></p>
-    </div>
+    </section>
 
-    <!-- Modal Đăng Nhập Admin -->
-    <div id="login-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-brand-card border border-brand-border rounded-2xl w-full max-w-sm p-6 relative">
-            <h3 class="text-xl font-bold text-white mb-2"><i class="fa-solid fa-lock text-brand-accent mr-2"></i> Đăng Nhập Admin</h3>
-            <p class="text-xs text-gray-400 mb-4">Nhập mật khẩu quản trị để truy cập (Mật khẩu mặc định: <code class="text-brand-accent">admin123</code>)</p>
-            <div class="space-y-4">
-                <input type="password" id="admin-password" placeholder="Mật khẩu..." class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent">
-            </div>
-            <div class="flex justify-end gap-3 mt-6">
-                <button onclick="closeLoginModal()" class="px-4 py-2 rounded-lg text-gray-400 text-sm hover:text-white">Hủy</button>
-                <button onclick="verifyAdminPassword()" class="px-6 py-2 bg-brand-accent text-black font-bold rounded-lg text-sm hover:bg-brand-accentHover">Đăng Nhập</button>
-            </div>
+    <section class="contact-section">
+        <h3>Liên hệ</h3>
+        <div class="contact-info">
+            <p><strong>Enkai Art Agency</strong></p>
+            <p>Chủ sở hữu: <strong>Trần Quang Trung</strong></p>
+            <p><a href="mailto:quangtrung.info@hotmail.com">quangtrung.info@hotmail.com</a></p>
+            <p>Hồ Tây - Hà Nội, Việt Nam</p>
         </div>
-    </div>
+    </section>
 
-    <!-- Modal Thêm / Sửa Tác Phẩm -->
-    <div id="art-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-brand-card border border-brand-border rounded-2xl w-full max-w-lg p-6 relative">
-            <h3 id="modal-title" class="text-xl font-bold text-white mb-4">Thêm Tác Phẩm Mới</h3>
-            <input type="hidden" id="edit-art-id">
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Tên tác phẩm</label>
-                    <input type="text" id="input-title" class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Link hình ảnh</label>
-                    <input type="text" id="input-img" class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Ngày đăng</label>
-                    <input type="text" id="input-date" class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent" placeholder="Ví dụ: 30/07/2026">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Mô tả chi tiết</label>
-                    <textarea id="input-desc" rows="3" class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent"></textarea>
-                </div>
-            </div>
-            <div class="flex justify-end gap-3 mt-6">
-                <button onclick="closeModal()" class="px-4 py-2 rounded-lg text-gray-400 text-sm hover:text-white">Hủy</button>
-                <button onclick="saveArtWork()" class="px-6 py-2 bg-brand-accent text-black font-bold rounded-lg text-sm hover:bg-brand-accentHover">Lưu</button>
-            </div>
-        </div>
-    </div>
-
-    <footer class="bg-brand-dark border-t border-brand-border py-8 text-center text-xs text-gray-600">
-        <p>&copy; 2026 Enkai Art Agency. Trần Quang Trung.</p>
-        <p class="mt-2 max-w-2xl mx-auto px-4">Tuyên bố bản quyền chính thức: Toàn bộ nội dung, hình ảnh, mã nguồn và tài sản trí tuệ hiện hữu tại không gian này thuộc quyền sở hữu độc quyền và hợp pháp của Trần Quang Trung. Mọi hành vi sao chép, xuyên tạc, phân phối, khai thác hoặc sử dụng dưới bất kỳ hình thức thương mại nào khi chưa có sự chấp thuận bằng văn bản từ chủ sở hữu Trần Quang Trung đều là hành vi vi phạm nghiêm trọng luật sở hữu trí tuệ và sẽ bị xử lý triệt để theo quy định pháp luật.</p>
-    </footer>
-
-    <script>
-        let isAdminLoggedIn = false;
-        let currentActiveArtId = null;
-
-        // Dữ liệu lưu trữ các tác phẩm
-        let artDatabase = {
-            '1': {
-                title: 'Thực Thể Chiều Không Gian',
-                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop',
-                date: '30/07/2026',
-                desc: 'Nghiên cứu về ánh sáng và hình khối trong không gian đa chiều.'
-            }
-        };
-
-        // Quản lý Đăng nhập Admin
-        function requestAdminAccess(e) {
-            e.preventDefault();
-            if (isAdminLoggedIn) {
-                const adminSec = document.getElementById('admin-section');
-                adminSec.classList.toggle('hidden');
-                if(!adminSec.classList.contains('hidden')) {
-                    adminSec.scrollIntoView({ behavior: 'smooth' });
-                }
-            } else {
-                document.getElementById('login-modal').classList.remove('hidden');
-                document.getElementById('admin-password').value = '';
-            }
-        }
-
-        function verifyAdminPassword() {
-            const pass = document.getElementById('admin-password').value;
-            if (pass === 'admin123') { // Bạn có thể đổi mật khẩu tại đây
-                isAdminLoggedIn = true;
-                closeLoginModal();
-                const adminSec = document.getElementById('admin-section');
-                adminSec.classList.remove('hidden');
-                adminSec.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                alert('Mật khẩu không chính xác!');
-            }
-        }
-
-        function closeLoginModal() {
-            document.getElementById('login-modal').classList.add('hidden');
-        }
-
-        function logoutAdmin() {
-            isAdminLoggedIn = false;
-            document.getElementById('admin-section').classList.add('hidden');
-            alert('Đã đăng xuất khỏi khu vực quản trị!');
-        }
-
-        function showHomeView(e) { 
-            if(e) e.preventDefault(); 
-            document.getElementById('detail-view').classList.add('hidden'); 
-            document.getElementById('home-view').classList.remove('hidden'); 
-        }
-
-        function openDetailView(id) {
-            const art = artDatabase[id];
-            if(!art) return;
-            currentActiveArtId = id; // Lưu lại ID đang xem
-            document.getElementById('detail-img').src = art.image;
-            document.getElementById('detail-title').innerText = art.title;
-            document.getElementById('detail-date-text').innerText = art.date;
-            document.getElementById('detail-desc').innerText = art.desc;
-            document.getElementById('home-view').classList.add('hidden');
-            document.getElementById('detail-view').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        // Chức năng sao chép link
-        function copyArtLink() {
-            const currentUrl = window.location.href.split('#')[0] + '#art=' + currentActiveArtId;
-            navigator.clipboard.writeText(currentUrl).then(() => {
-                alert('Đã sao chép liên kết tác phẩm vào bộ nhớ tạm!');
-            }).catch(err => {
-                prompt('Sao chép liên kết thủ công:', currentUrl);
-            });
-        }
-
-        // Chức năng tải ảnh xuống
-        function downloadArtImage() {
-            const art = artDatabase[currentActiveArtId];
-            if(!art) return;
-            
-            // Mở ảnh ra tab mới để người dùng có thể giữ tay vào ảnh và chọn tải xuống (tối ưu cho mobile)
-            const a = document.createElement('a');
-            a.href = art.image;
-            a.target = '_blank';
-            a.download = art.title + '.jpg';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-
-        function openModalForAdd() {
-            document.getElementById('modal-title').innerText = 'Thêm Tác Phẩm Mới';
-            document.getElementById('edit-art-id').value = '';
-            document.getElementById('input-title').value = '';
-            document.getElementById('input-img').value = '';
-            const today = new Date();
-            const dd = String(today.getDate()).padStart(2, '0');
-            const mm = String(today.getMonth() + 1).padStart(2, '0');
-            const yyyy = today.getFullYear();
-            document.getElementById('input-date').value = dd + '/' + mm + '/' + yyyy;
-            document.getElementById('input-desc').value = '';
-            document.getElementById('art-modal').classList.remove('hidden');
-        }
-
-        function openModalForEdit(id) {
-            const art = artDatabase[id];
-            if(!art) return;
-            document.getElementById('modal-title').innerText = 'Chỉnh Sửa Tác Phẩm';
-            document.getElementById('edit-art-id').value = id;
-            document.getElementById('input-title').value = art.title;
-            document.getElementById('input-img').value = art.image;
-            document.getElementById('input-date').value = art.date;
-            document.getElementById('input-desc').value = art.desc;
-            document.getElementById('art-modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('art-modal').classList.add('hidden');
-        }
-
-        function saveArtWork() {
-            const id = document.getElementById('edit-art-id').value;
-            const title = document.getElementById('input-title').value;
-            const image = document.getElementById('input-img').value;
-            const date = document.getElementById('input-date').value;
-            const desc = document.getElementById('input-desc').value;
-
-            if(!title || !image) {
-                alert('Vui lòng nhập tên và link hình ảnh!');
-                return;
-            }
-
-            if(id) {
-                artDatabase[id] = { title, image, date, desc };
-                updateUI(id, title, image, date, desc, false);
-            } else {
-                const newId = Date.now().toString();
-                artDatabase[newId] = { title, image, date, desc };
-                updateUI(newId, title, image, date, desc, true);
-            }
-            closeModal();
-        }
-
-        function updateUI(id, title, image, date, desc, isNew) {
-            if(isNew) {
-                const gallery = document.getElementById('gallery-grid');
-                const cardHtml = `
-                    <div id="art-card-${id}" class="bg-brand-card border border-brand-border rounded-xl overflow-hidden group hover:-translate-y-2 transition-all cursor-pointer" onclick="openDetailView('${id}')">
-                        <img id="img-card-${id}" src="${image}" class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h3 id="title-card-${id}" class="text-xl font-bold text-white mb-1">${title}</h3>
-                            <p id="date-card-${id}" class="text-xs text-brand-accent mb-3"><i class="fa-regular fa-calendar mr-1"></i> ${date}</p>
-                            <p id="desc-card-${id}" class="text-gray-400 text-sm line-clamp-2">${desc}</p>
-                        </div>
-                    </div>
-                `;
-                gallery.insertAdjacentHTML('afterbegin', cardHtml);
-
-                const adminList = document.getElementById('admin-art-list');
-                const adminItemHtml = `
-                    <div id="admin-item-${id}" class="flex justify-between items-center py-2 border-b border-brand-border last:border-0">
-                        <span class="text-white font-medium text-sm">${title}</span>
-                        <div class="flex gap-3">
-                            <button onclick="openModalForEdit('${id}')" class="text-brand-accent text-sm hover:underline"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
-                            <button onclick="deleteArtCard('${id}')" class="text-red-400 text-sm hover:underline"><i class="fa-solid fa-trash"></i> Xóa</button>
-                        </div>
-                    </div>
-                `;
-                adminList.insertAdjacentHTML('afterbegin', adminItemHtml);
-            } else {
-                document.getElementById(`title-card-${id}`).innerText = title;
-                document.getElementById(`img-card-${id}`).src = image;
-                document.getElementById(`date-card-${id}`).innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${date}`;
-                document.getElementById(`desc-card-${id}`).innerText = desc;
-
-                const adminItemTitle = document.querySelector(`#admin-item-${id} span`);
-                if(adminItemTitle) adminItemTitle.innerText = title;
-            }
-        }
-
-        function deleteArtCard(id) {
-            if(!confirm('Bạn có chắc chắn muốn xóa tác phẩm này không?')) return;
-            delete artDatabase[id];
-            
-            const card = document.getElementById(`art-card-${id}`);
-            if(card) card.remove();
-
-            const adminItem = document.getElementById(`admin-item-${id}`);
-            if(adminItem) adminItem.remove();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
