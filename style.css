@@ -27,7 +27,7 @@ a {text-decoration:none;color:inherit;}
     background:rgba(18,15,10,0.85);backdrop-filter:blur(12px);z-index:999;
     border-bottom:1px solid var(--border-soft);
 }
-/* === LOGO ẢNH === */
+/* Logo ảnh góc trên */
 .logo-link {
     display:flex;align-items:center;text-decoration:none;
 }
@@ -50,10 +50,6 @@ a {text-decoration:none;color:inherit;}
     text-align:center;padding:100px 24px 60px;
 }
 .hero-inner {max-width:720px;}
-.hero-logo {
-    width:220px;height:auto;margin-bottom:24px;
-    display:inline-block;filter:drop-shadow(0 4px 12px rgba(200,169,98,0.15));
-}
 .hero-subtitle {
     font-size:13px;letter-spacing:3px;text-transform:uppercase;
     color:var(--gold);margin-bottom:16px;opacity:0.8;
@@ -251,8 +247,6 @@ a {text-decoration:none;color:inherit;}
     .site-header {padding:16px 20px;}
     .main-nav a {margin-left:16px;font-size:13px;}
     .logo-img {height:44px;}
-    .hero-logo {width:180px;}
     .art-grid {grid-template-columns:1fr;gap:28px;}
     .work-single {padding:20px;}
-    }
-    
+}
