@@ -84,11 +84,15 @@
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="bg-brand-dark p-8 rounded-2xl border border-brand-border">
                     <h3 class="text-xl font-bold text-white mb-4">Về Chủ Sở Hữu: Trần Quang Trung</h3>
-                    <p class="text-gray-400">Nhà sáng lập Enkai Art Agency với đam mê nghệ thuật thị giác.</p>
+                    <p class="text-gray-400 mb-3">Nhà sáng lập Enkai Art Agency với tầm nhìn chiến lược đột phá và niềm đam mê mãnh liệt dành cho nghệ thuật thị giác hiện đại.</p>
+                    <p class="text-gray-400 mb-3">Là bộ óc sáng tạo và là người định hình nên giá trị cốt lõi của thương hiệu, anh trực tiếp nắm giữ quyền sở hữu tối cao đối với toàn bộ hệ thống tài sản số.</p>
+                    <p class="text-gray-400 mb-3">Bằng sự tâm huyết và tư duy nghệ thuật khác biệt, Trần Quang Trung chính là bảo chứng vững chắc cho tính nguyên bản, sự độc quyền và đẳng cấp của từng sản phẩm.</p>
+                    <p class="text-gray-400">Mọi quyền lợi hợp pháp, thành quả sáng tạo và trí tuệ đằng sau hệ thống này đều thuộc về quyền định đoạt duy nhất của nhà sáng lập Trần Quang Trung.</p>
                 </div>
                 <div class="bg-brand-dark p-8 rounded-2xl border border-brand-border">
                     <h3 class="text-xl font-bold text-white mb-4">Về Tác Phẩm</h3>
-                    <p class="text-gray-400">Bộ sưu tập kỹ thuật số độc bản chất lượng cao.</p>
+                    <p class="text-gray-400 mb-3">Bộ sưu tập kỹ thuật số độc bản chất lượng cao, là sự kết tinh hoàn hảo giữa tư duy sáng tạo đỉnh cao, công nghệ hiện đại và khối óc trí tuệ đầy tâm huyết.</p>
+                    <p class="text-gray-400">Mỗi tác phẩm trong bộ sưu tập không chỉ mang giá trị thẩm mỹ vượt thời gian mà còn chứa đựng tài sản trí tuệ độc quyền, khẳng định dấu ấn cá nhân mạnh mẽ và vị thế tiên phong trong lĩnh vực nghệ thuật số.</p>
                 </div>
             </div>
         </section>
@@ -178,7 +182,7 @@
 
     <footer class="bg-brand-dark border-t border-brand-border py-8 text-center text-xs text-gray-600">
         <p>&copy; 2026 Enkai Art Agency. Trần Quang Trung.</p>
-        <p class="mt-2 max-w-2xl mx-auto px-4">Tuyên bố trách nhiệm mặc định: Nội dung thuộc bản quyền của Enkai Art Agency. Mọi hành vi sao chép thương mại đều bị nghiêm cấm.</p>
+        <p class="mt-2 max-w-2xl mx-auto px-4">Tuyên bố bản quyền chính thức: Toàn bộ nội dung, hình ảnh, mã nguồn và tài sản trí tuệ hiện hữu tại không gian này thuộc quyền sở hữu độc quyền và hợp pháp của Trần Quang Trung. Mọi hành vi sao chép, xuyên tạc, phân phối, khai thác hoặc sử dụng dưới bất kỳ hình thức thương mại nào khi chưa có sự chấp thuận bằng văn bản từ chủ sở hữu Trần Quang Trung đều là hành vi vi phạm nghiêm trọng luật sở hữu trí tuệ và sẽ bị xử lý triệt để theo quy định pháp luật.</p>
     </footer>
 
     <script>
@@ -332,8 +336,8 @@
 
         function updateUI(id, title, image, date, desc, isNew) {
             if(isNew) {
-                const galleryGrid = document.getElementById('gallery-grid');
-                const cardHTML = `
+                const gallery = document.getElementById('gallery-grid');
+                const cardHtml = `
                     <div id="art-card-${id}" class="bg-brand-card border border-brand-border rounded-xl overflow-hidden group hover:-translate-y-2 transition-all cursor-pointer" onclick="openDetailView('${id}')">
                         <img id="img-card-${id}" src="${image}" class="w-full h-64 object-cover">
                         <div class="p-6">
@@ -343,10 +347,10 @@
                         </div>
                     </div>
                 `;
-                galleryGrid.insertAdjacentHTML('afterbegin', cardHTML);
+                gallery.insertAdjacentHTML('afterbegin', cardHtml);
 
                 const adminList = document.getElementById('admin-art-list');
-                const adminHTML = `
+                const adminItemHtml = `
                     <div id="admin-item-${id}" class="flex justify-between items-center py-2 border-b border-brand-border last:border-0">
                         <span class="text-white font-medium text-sm">${title}</span>
                         <div class="flex gap-3">
@@ -355,26 +359,27 @@
                         </div>
                     </div>
                 `;
-                adminList.insertAdjacentHTML('afterbegin', adminHTML);
+                adminList.insertAdjacentHTML('afterbegin', adminItemHtml);
             } else {
-                document.getElementById(`img-card-${id}`).src = image;
                 document.getElementById(`title-card-${id}`).innerText = title;
+                document.getElementById(`img-card-${id}`).src = image;
                 document.getElementById(`date-card-${id}`).innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${date}`;
                 document.getElementById(`desc-card-${id}`).innerText = desc;
 
-                const adminItem = document.getElementById(`admin-item-${id}`);
-                if(adminItem) {
-                    adminItem.querySelector('span').innerText = title;
-                }
+                const adminItemTitle = document.querySelector(`#admin-item-${id} span`);
+                if(adminItemTitle) adminItemTitle.innerText = title;
             }
         }
 
         function deleteArtCard(id) {
-            if(confirm('Bạn có chắc muốn xóa tác phẩm này không?')) {
-                document.getElementById('art-card-'+id)?.remove();
-                document.getElementById('admin-item-'+id)?.remove();
-                delete artDatabase[id];
-            }
+            if(!confirm('Bạn có chắc chắn muốn xóa tác phẩm này không?')) return;
+            delete artDatabase[id];
+            
+            const card = document.getElementById(`art-card-${id}`);
+            if(card) card.remove();
+
+            const adminItem = document.getElementById(`admin-item-${id}`);
+            if(adminItem) adminItem.remove();
         }
     </script>
 </body>
