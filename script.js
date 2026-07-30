@@ -129,3 +129,22 @@ function initWorkPage() {
     </div>
   `;
 }
+.logo-wrap {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-family: var(--serif);
+}
+.logo-sub {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    margin-top: 2px;
+}
