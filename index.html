@@ -46,7 +46,7 @@
                     <a href="#portfolio" onclick="showHomeView(event)" class="text-sm font-medium hover:text-brand-accent transition-colors">Tác phẩm</a>
                     <a href="#about" onclick="showHomeView(event)" class="text-sm font-medium hover:text-brand-accent transition-colors">Giới thiệu</a>
                     <a href="#services" onclick="showHomeView(event)" class="text-sm font-medium hover:text-brand-accent transition-colors">Dịch vụ</a>
-                    <a href="#admin-section" onclick="toggleAdminPanel(event)" class="text-[10px] text-gray-700 hover:text-brand-accent transition-colors tracking-widest uppercase">Admin</a>
+                    <a href="#" onclick="requestAdminAccess(event)" class="text-[10px] text-gray-700 hover:text-brand-accent transition-colors tracking-widest uppercase font-bold">Admin</a>
                 </nav>
             </div>
         </div>
@@ -93,12 +93,15 @@
             </div>
         </section>
 
-        <!-- KHU VỰC ADMIN -->
+        <!-- KHU VỰC ADMIN (Bảo mật bằng đăng nhập) -->
         <section id="admin-section" class="py-24 px-4 bg-brand-card border-t-2 border-brand-accent hidden">
             <div class="max-w-4xl mx-auto">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-white">Quản Trị Tác Phẩm</h2>
-                    <button onclick="openModalForAdd()" class="px-6 py-2.5 bg-brand-accent text-black font-bold rounded-xl text-sm hover:bg-brand-accentHover transition-colors"><i class="fa-solid fa-plus mr-1"></i> Thêm Mới</button>
+                    <h2 class="text-2xl font-bold text-white">Quản Trị Tác Phẩm <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded ml-2">Đã đăng nhập</span></h2>
+                    <div class="flex gap-3">
+                        <button onclick="openModalForAdd()" class="px-5 py-2.5 bg-brand-accent text-black font-bold rounded-xl text-sm hover:bg-brand-accentHover transition-colors"><i class="fa-solid fa-plus mr-1"></i> Thêm Mới</button>
+                        <button onclick="logoutAdmin()" class="px-4 py-2.5 bg-red-500/20 text-red-400 font-bold rounded-xl text-sm hover:bg-red-500/30 transition-colors">Đăng Xuất</button>
+                    </div>
                 </div>
                 <div id="admin-art-list" class="bg-brand-dark border border-brand-border rounded-xl p-4 space-y-3">
                     <div id="admin-item-1" class="flex justify-between items-center py-2 border-b border-brand-border last:border-0">
@@ -113,13 +116,34 @@
         </section>
     </div>
 
-    <!-- Trang xem chi tiết (Đã có thêm ngày đăng) -->
+    <!-- Trang xem chi tiết (Có nút Lấy Link & Tải ảnh) -->
     <div id="detail-view" class="hidden pt-32 pb-24 px-4 min-h-screen max-w-4xl mx-auto">
-        <button onclick="showHomeView(event)" class="text-brand-accent mb-6 font-medium"><i class="fa-solid fa-arrow-left mr-2"></i> Quay lại</button>
+        <div class="flex justify-between items-center mb-6">
+            <button onclick="showHomeView(event)" class="text-brand-accent font-medium hover:underline"><i class="fa-solid fa-arrow-left mr-2"></i> Quay lại</button>
+            <div class="flex gap-3">
+                <button onclick="copyArtLink()" class="px-4 py-2 bg-brand-card border border-brand-border text-white text-xs font-semibold rounded-lg hover:border-brand-accent transition-colors"><i class="fa-solid fa-link mr-1.5 text-brand-accent"></i> Sao chép link</button>
+                <button onclick="downloadArtImage()" class="px-4 py-2 bg-brand-accent text-black text-xs font-bold rounded-lg hover:bg-brand-accentHover transition-colors"><i class="fa-solid fa-download mr-1.5"></i> Tải ảnh xuống</button>
+            </div>
+        </div>
         <img id="detail-img" class="w-full max-h-[600px] object-contain bg-black rounded-xl border border-brand-border mb-6">
         <h1 id="detail-title" class="text-3xl font-bold text-white mb-2"></h1>
         <p id="detail-date" class="text-xs text-brand-accent mb-4"><i class="fa-regular fa-calendar mr-1"></i> <span id="detail-date-text"></span></p>
         <p id="detail-desc" class="text-gray-300 leading-relaxed"></p>
+    </div>
+
+    <!-- Modal Đăng Nhập Admin -->
+    <div id="login-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border rounded-2xl w-full max-w-sm p-6 relative">
+            <h3 class="text-xl font-bold text-white mb-2"><i class="fa-solid fa-lock text-brand-accent mr-2"></i> Đăng Nhập Admin</h3>
+            <p class="text-xs text-gray-400 mb-4">Nhập mật khẩu quản trị để truy cập (Mật khẩu mặc định: <code class="text-brand-accent">admin123</code>)</p>
+            <div class="space-y-4">
+                <input type="password" id="admin-password" placeholder="Mật khẩu..." class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-accent">
+            </div>
+            <div class="flex justify-end gap-3 mt-6">
+                <button onclick="closeLoginModal()" class="px-4 py-2 rounded-lg text-gray-400 text-sm hover:text-white">Hủy</button>
+                <button onclick="verifyAdminPassword()" class="px-6 py-2 bg-brand-accent text-black font-bold rounded-lg text-sm hover:bg-brand-accentHover">Đăng Nhập</button>
+            </div>
+        </div>
     </div>
 
     <!-- Modal Thêm / Sửa Tác Phẩm -->
@@ -158,6 +182,9 @@
     </footer>
 
     <script>
+        let isAdminLoggedIn = false;
+        let currentActiveArtId = null;
+
         // Dữ liệu lưu trữ các tác phẩm
         let artDatabase = {
             '1': {
@@ -168,9 +195,42 @@
             }
         };
 
-        function toggleAdminPanel(e) { 
-            e.preventDefault(); 
-            document.getElementById('admin-section').classList.toggle('hidden'); 
+        // Quản lý Đăng nhập Admin
+        function requestAdminAccess(e) {
+            e.preventDefault();
+            if (isAdminLoggedIn) {
+                const adminSec = document.getElementById('admin-section');
+                adminSec.classList.toggle('hidden');
+                if(!adminSec.classList.contains('hidden')) {
+                    adminSec.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                document.getElementById('login-modal').classList.remove('hidden');
+                document.getElementById('admin-password').value = '';
+            }
+        }
+
+        function verifyAdminPassword() {
+            const pass = document.getElementById('admin-password').value;
+            if (pass === 'admin123') { // Bạn có thể đổi mật khẩu tại đây
+                isAdminLoggedIn = true;
+                closeLoginModal();
+                const adminSec = document.getElementById('admin-section');
+                adminSec.classList.remove('hidden');
+                adminSec.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Mật khẩu không chính xác!');
+            }
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            document.getElementById('admin-section').classList.add('hidden');
+            alert('Đã đăng xuất khỏi khu vực quản trị!');
         }
 
         function showHomeView(e) { 
@@ -182,6 +242,7 @@
         function openDetailView(id) {
             const art = artDatabase[id];
             if(!art) return;
+            currentActiveArtId = id; // Lưu lại ID đang xem
             document.getElementById('detail-img').src = art.image;
             document.getElementById('detail-title').innerText = art.title;
             document.getElementById('detail-date-text').innerText = art.date;
@@ -191,12 +252,36 @@
             window.scrollTo(0, 0);
         }
 
+        // Chức năng sao chép link
+        function copyArtLink() {
+            const currentUrl = window.location.href.split('#')[0] + '#art=' + currentActiveArtId;
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                alert('Đã sao chép liên kết tác phẩm vào bộ nhớ tạm!');
+            }).catch(err => {
+                prompt('Sao chép liên kết thủ công:', currentUrl);
+            });
+        }
+
+        // Chức năng tải ảnh xuống
+        function downloadArtImage() {
+            const art = artDatabase[currentActiveArtId];
+            if(!art) return;
+            
+            // Mở ảnh ra tab mới để người dùng có thể giữ tay vào ảnh và chọn tải xuống (tối ưu cho mobile)
+            const a = document.createElement('a');
+            a.href = art.image;
+            a.target = '_blank';
+            a.download = art.title + '.jpg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
         function openModalForAdd() {
             document.getElementById('modal-title').innerText = 'Thêm Tác Phẩm Mới';
             document.getElementById('edit-art-id').value = '';
             document.getElementById('input-title').value = '';
             document.getElementById('input-img').value = '';
-            // Tự động điền ngày hiện tại
             const today = new Date();
             const dd = String(today.getDate()).padStart(2, '0');
             const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -235,11 +320,9 @@
             }
 
             if(id) {
-                // Cập nhật tác phẩm cũ
                 artDatabase[id] = { title, image, date, desc };
                 updateUI(id, title, image, date, desc, false);
             } else {
-                // Thêm tác phẩm mới
                 const newId = Date.now().toString();
                 artDatabase[newId] = { title, image, date, desc };
                 updateUI(newId, title, image, date, desc, true);
@@ -249,7 +332,6 @@
 
         function updateUI(id, title, image, date, desc, isNew) {
             if(isNew) {
-                // Thêm HTML vào Gallery Grid
                 const galleryGrid = document.getElementById('gallery-grid');
                 const cardHTML = `
                     <div id="art-card-${id}" class="bg-brand-card border border-brand-border rounded-xl overflow-hidden group hover:-translate-y-2 transition-all cursor-pointer" onclick="openDetailView('${id}')">
@@ -263,7 +345,6 @@
                 `;
                 galleryGrid.insertAdjacentHTML('afterbegin', cardHTML);
 
-                // Thêm HTML vào danh sách quản lý Admin
                 const adminList = document.getElementById('admin-art-list');
                 const adminHTML = `
                     <div id="admin-item-${id}" class="flex justify-between items-center py-2 border-b border-brand-border last:border-0">
@@ -276,13 +357,11 @@
                 `;
                 adminList.insertAdjacentHTML('afterbegin', adminHTML);
             } else {
-                // Cập nhật lại giao diện thẻ ngoài trang chủ
                 document.getElementById(`img-card-${id}`).src = image;
                 document.getElementById(`title-card-${id}`).innerText = title;
                 document.getElementById(`date-card-${id}`).innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${date}`;
                 document.getElementById(`desc-card-${id}`).innerText = desc;
 
-                // Cập nhật lại tên trong danh sách admin
                 const adminItem = document.getElementById(`admin-item-${id}`);
                 if(adminItem) {
                     adminItem.querySelector('span').innerText = title;
