@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Agency Portfolio</title>
+    <style>
+        :root {
+            --primary-bg: #0a192f; /* Dark Blue */
+            --secondary-bg: #112240; /* Slightly lighter blue */
+            --text-main: #ccd6f6; /* Light gray/blue text */
+            --text-accent: #64ffda; /* Teal accent */
+            --border-color: #233554;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--secondary-bg);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-accent);
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text-accent);
+        }
+
+        .hero {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .gallery {
+            padding: 2rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .art-card {
+            background-color: var(--secondary-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+
+        .art-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .art-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .art-info {
+            padding: 1rem;
+        }
+
+        .art-info h3 {
+            margin: 0 0 0.5rem;
+            color: var(--text-accent);
+        }
+
+        .art-info .date {
+            font-size: 0.8rem;
+            color: #8892b0;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-section {
+            padding: 4rem 5%;
+            background-color: var(--secondary-bg);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .about-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--primary-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .about-card h2 {
+            color: var(--text-accent);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--secondary-bg);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #8892b0;
+            margin-top: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Basic Admin Styles - Hidden by default in production, shown here for structure */
+        #admin-panel {
+            display: none; /* Hide admin panel */
+            padding: 2rem 5%;
+            background-color: #1a202c;
+            border-top: 2px solid var(--text-accent);
+            margin-top: 4rem;
+        }
+
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .admin-form label {
+            margin-top: 1rem;
+            color: var(--text-accent);
+        }
+
+        .admin-form input, .admin-form textarea {
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            background-color: #2d3748;
+            border: 1px solid var(--border-color);
+            color: white;
+            border-radius: 4px;
+        }
+        
+        .admin-form button {
+            margin-top: 1.5rem;
+            padding: 0.75rem;
+            background-color: var(--text-accent);
+            color: var(--primary-bg);
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .admin-form button:hover {
+            background-color: #52ebd3;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Art Agency</div>
+        <nav>
+            <a href="#home">Trang chủ</a>
+            <a href="#gallery">Tác phẩm</a>
+            <a href="#about">Giới thiệu</a>
+            <!-- Link ẩn tới trang admin (trong thực tế nên tách file) -->
+            <a href="#admin-panel" style="opacity: 0.2; font-size: 0.8rem;" onclick="document.getElementById('admin-panel').style.display='block'">Admin</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Triển Lãm Nghệ Thuật Số</h1>
+        <p>Không gian trưng bày, lưu trữ và chia sẻ các tác phẩm nghệ thuật thị giác, đồ họa 3D chất lượng cao.</p>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <!-- Sample Artworks -->
+        <div class="art-card">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop" alt="Artwork 1">
+            <div class="art-info">
+                <h3>Không Gian Ảo Chiều</h3>
+                <div class="date">Đăng ngày: 30/07/2026</div>
+                <p>Khám phá chiều không gian mới qua góc nhìn nghệ thuật trừu tượng.</p>
+            </div>
+        </div>
+        <div class="art-card">
+            <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=600&auto=format&fit=crop" alt="Artwork 2">
+            <div class="art-info">
+                <h3>Thành Phố Neon</h3>
+                <div class="date">Đăng ngày: 28/07/2026</div>
+                <p>Phong cách Cyberpunk với màu sắc rực rỡ và độ chi tiết cao.</p>
+            </div>
+        </div>
+        <!-- Thêm các tác phẩm khác ở đây -->
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-card">
+            <h2>Về Chủ Sở Hữu</h2>
+            <p>Xin chào, tôi là một người đam mê sáng tạo nghệ thuật số. Với nhiều năm kinh nghiệm trong lĩnh vực thiết kế và phát triển, tôi xây dựng không gian này để chia sẻ góc nhìn cá nhân và những dự án tâm huyết nhất.</p>
+            <p>Mục tiêu của tôi là kết nối với cộng đồng yêu nghệ thuật và không ngừng khám phá những giới hạn mới của sáng tạo.</p>
+        </div>
+        <div class="about-card">
+            <h2>Về Các Tác Phẩm</h2>
+            <p>Các tác phẩm trưng bày tại đây là sự kết hợp giữa kỹ thuật số và cảm hứng bất tận. Từ những bức tranh minh họa chi tiết đến không gian 3D siêu thực, mỗi tác phẩm đều mang một câu chuyện riêng.</p>
+            <p>Chúng tôi đề cao tính độc bản, chất lượng hiển thị cao (4K/8K) và trải nghiệm thị giác tuyệt vời nhất cho người xem.</p>
+        </div>
+    </section>
+
+    <!-- Admin Panel (Ẩn trên trang chính, có thể gọi ra qua link ẩn hoặc tách file riêng) -->
+    <section id="admin-panel">
+        <h2 style="text-align: center; color: var(--text-accent);">Bảng Điều Khiển Quản Trị</h2>
+        <form class="admin-form" onsubmit="event.preventDefault(); alert('Chức năng thêm tác phẩm (Cần kết nối Backend/Database để hoạt động thực tế)');">
+            <label for="img-link">Link Ảnh (URL):</label>
+            <input type="url" id="img-link" placeholder="https://ví-dụ.com/anh.jpg" required>
+
+            <label for="art-title">Tiêu đề tác phẩm:</label>
+            <input type="text" id="art-title" required>
+
+            <label for="art-date">Ngày đăng:</label>
+            <input type="date" id="art-date" required>
+
+            <label for="art-desc">Nội dung / Mô tả:</label>
+            <textarea id="art-desc" rows="4" required></textarea>
+
+            <button type="submit">Đăng Tác Phẩm Mới</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Art Agency. All Rights Reserved.</p>
+        <p class="disclaimer">
+            <strong>Tuyên bố trách nhiệm mặc định:</strong><br>
+            Tất cả các tác phẩm nghệ thuật và nội dung trên trang web này thuộc bản quyền của tác giả và chủ sở hữu trang web, trừ khi có ghi chú khác. Mọi hành vi sao chép, phân phối hoặc sử dụng cho mục đích thương mại mà không có sự cho phép bằng văn bản đều bị nghiêm cấm. Thông tin trên website được cung cấp "nguyên trạng" và chúng tôi không chịu trách nhiệm cho bất kỳ tổn thất nào phát sinh từ việc sử dụng thông tin này.
+        </p>
+    </footer>
+
+    <!-- Script cơ bản để xử lý Form Admin (Minh họa) -->
+    <script>
+        // Trong môi trường thực tế, phần admin này nên nằm ở file riêng (ví dụ: admin.html) 
+        // và dữ liệu phải được gửi lên server (NodeJS, PHP, Python) để lưu vào CSDL (MySQL, MongoDB)
+        document.querySelector('.admin-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const link = document.getElementById('img-link').value;
+            const title = document.getElementById('art-title').value;
+            const date = document.getElementById('art-date').value;
+            const desc = document.getElementById('art-desc').value;
+            
+            // Format lại ngày
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('vi-VN');
+
+            // Tạo phần tử HTML mới cho tác phẩm
+            const newArtHTML = `
+                <div class="art-card">
+                    <img src="${link}" alt="${title}">
+                    <div class="art-info">
+                        <h3>${title}</h3>
+                        <div class="date">Đăng ngày: ${formattedDate}</div>
+                        <p>${desc}</p>
+                    </div>
+                </div>
+            `;
+            
+            // Thêm vào danh sách gallery
+            document.querySelector('.gallery').insertAdjacentHTML('afterbegin', newArtHTML);
+            
+            // Reset form
+            this.reset();
+            alert('Đã thêm tác phẩm ảo vào giao diện! (Tải lại trang sẽ mất)');
+        });
+    </script>
+</body>
+</html>
