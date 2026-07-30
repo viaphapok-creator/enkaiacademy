@@ -3,66 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enkai Art Agency</title>
+    <title>Enkai Art Agency — Trần Quang Trung</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header Giống Mẫu -->
+    <header class="site-header">
+        <div class="logo">Enkai</div>
+        <nav class="main-nav">
+            <a href="#gallery" class="active">Tác phẩm</a>
+            <a href="#about">Giới thiệu</a>
+            <a href="#contact">Liên hệ</a>
+        </nav>
+    </header>
 
-    <div class="brand-top">Enkai</div>
-    <input type="text" class="search-box" placeholder="Type to explore our collection">
-
+    <!-- Phần Mở Đầu Đẹp Như Mẫu -->
     <section class="hero">
-        <h1>Art Agency</h1>
-        <span class="subtitle">Fine Digital Arts & Modern Masterpieces</span>
-        <a href="#collection" class="discover-link">Discover</a>
+        <p class="hero-top">KHÔNG GIAN SÁNG TẠO</p>
+        <h1>Enkai Art Agency</h1>
+        <p class="hero-desc">Nơi lưu giữ những khoảnh khắc & tác phẩm của <strong>Trần Quang Trung</strong></p>
+        <a href="#gallery" class="hero-btn">Khám phá tác phẩm</a>
     </section>
 
-    <section class="collection" id="collection">
-        <h2>Season 01<br>Collection</h2>
-        <p>Shop exclusive digital prints and premium physical canvases. Limited edition works by Trần Quang Trung.</p>
+    <!-- ✅ BỘ SƯU TẬP NGAY DƯỚI -->
+    <section class="gallery" id="gallery">
+        <div class="section-head">
+            <h2>Bộ Sưu Tập</h2>
+            <p>Mỗi tác phẩm đều là một phần của câu chuyện riêng</p>
+            <div class="search-wrap">
+                <input type="text" class="search-box" placeholder="Tìm kiếm tác phẩm...">
+            </div>
+        </div>
 
         <div class="art-grid">
-            <div class="art-card">
-                <div class="art-img">Tác phẩm nghệ thuật</div>
-                <h4 class="art-name">Work #001</h4>
-                <p class="art-desc">Limited edition / 50 copies</p>
-                <p class="art-price">Digital & Canvas available</p>
-            </div>
-            <div class="art-card">
-                <div class="art-img">Tác phẩm nghệ thuật</div>
-                <h4 class="art-name">Work #002</h4>
-                <p class="art-desc">Limited edition / 30 copies</p>
-                <p class="art-price">Digital & Canvas available</p>
-            </div>
-            <div class="art-card">
-                <div class="art-img">Tác phẩm nghệ thuật</div>
-                <h4 class="art-name">Work #003</h4>
-                <p class="art-desc">Limited edition / 25 copies</p>
-                <p class="art-price">Digital & Canvas available</p>
+            <a href="works/work001.html" class="art-card-link">
+                <div class="art-card">
+                    <div class="art-media">
+                        <img src="" alt="Work #001" loading="lazy">
+                    </div>
+                    <div class="art-info">
+                        <h3>Work #001 • Khoảnh Khắc Đầu Tiên</h3>
+                        <span class="art-tag">Ảnh Nghệ Thuật</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="works/work002.html" class="art-card-link">
+                <div class="art-card">
+                    <div class="art-media">
+                        <img src="" alt="Work #002" loading="lazy">
+                    </div>
+                    <div class="art-info">
+                        <h3>Work #002 • Sắc Màu Thiên Nhiên</h3>
+                        <span class="art-tag">Sáng Tạo Kỹ Thuật Số</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="works/work003.html" class="art-card-link">
+                <div class="art-card">
+                    <div class="art-media">
+                        <video autoplay muted loop playsinline preload="metadata">
+                            <source src="" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="art-info">
+                        <h3>Work #003 • Chuyển Động & Ánh Sáng</h3>
+                        <span class="art-tag">Video Định Dạng Ngắn</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-wrap">
+            <div class="about-text">
+                <span class="sub-heading">Về Enkai Art Agency</span>
+                <h2>Trần Quang Trung</h2>
+                <p>Người đứng sau Enkai Art Agency — nơi hội tụ những sáng tạo nghệ thuật độc đáo, nơi cảm xúc được vẽ thành hình khối, màu sắc và khung hình.</p>
             </div>
         </div>
     </section>
 
-    <section class="legal-section">
-        <h3>Tuyên bố trách nhiệm</h3>
-        <div class="legal-box">
-            <p>© 2025 Enkai Art Agency – Tất cả nội dung, hình ảnh, tác phẩm nghệ thuật trên trang web đều thuộc quyền sở hữu trí tuệ của <strong>Trần Quang Trung</strong> và Enkai Art Agency.</p>
-            <br>
-            <p>❌ Nghiêm cấm sao chép, tái sản xuất, phân phối, chỉnh sửa hoặc sử dụng bất kỳ nội dung nào cho mục đích thương mại nếu chưa có sự chấp thuận bằng văn bản từ chủ sở hữu.</p>
-            <br>
-            <p>ℹ️ Thông tin sản phẩm, giá cả và mô tả chỉ mang tính tham khảo. Chúng tôi nỗ lực cập nhật chính xác nhưng không đảm bảo không có sai sót. Enkai Art Agency và chủ sở hữu không chịu trách nhiệm về các vấn đề phát sinh từ việc sử dụng thông tin trên trang web khi chưa xác nhận trực tiếp.</p>
-            <br>
-            <p>✅ Khi mua sản phẩm, hợp đồng giao dịch chính thức sẽ được xác nhận riêng qua email hoặc hình thức liên hệ được cung cấp bên dưới.</p>
-        </div>
-    </section>
-
-    <section class="contact-section">
-        <h3>Liên hệ</h3>
-        <div class="contact-info">
-            <p><strong>Enkai Art Agency</strong></p>
-            <p>Chủ sở hữu: <strong>Trần Quang Trung</strong></p>
-            <p><a href="mailto:quangtrung.info@hotmail.com">quangtrung.info@hotmail.com</a></p>
-            <p>Hồ Tây - Hà Nội, Việt Nam</p>
+    <section class="contact" id="contact">
+        <div class="contact-wrap">
+            <span class="sub-heading">Kết Nối</span>
+            <h2>Liên Hệ</h2>
+            <div class="contact-grid">
+                <div class="contact-col">
+                    <p><strong>Enkai Art Agency</strong></p>
+                    <p>Chủ sở hữu: <strong>Trần Quang Trung</strong></p>
+                    <p>Email: <a href="mailto:iamdinhtuan.hakai@gmail.com">iamdinhtuan.hakai@gmail.com</a></p>
+                </div>
+                <div class="contact-col">
+                    <h4>Thông Báo</h4>
+                    <p>© 2026 Enkai Art Agency — Tất cả quyền được bảo lưu.</p>
+                </div>
+            </div>
         </div>
     </section>
 
