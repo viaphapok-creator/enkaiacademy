@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Quản Trị — Enkai Art Agency</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+    <header class="site-header">
+        <div class="logo">Enkai Admin</div>
+        <nav class="main-nav">
+            <a href="index.html">← Xem Trang Chủ</a>
+        </nav>
+    </header>
+
+    <section class="admin-panel">
+        <div class="admin-container">
+            <h1>⚙️ Quản Lý Tác Phẩm</h1>
+
+            <div class="admin-form-box">
+                <h2 id="form-title">➕ Thêm Tác Phẩm Mới</h2>
+                <form id="work-form">
+                    <input type="hidden" id="edit-id">
+
+                    <label>🔗 Link Ảnh / Video</label>
+                    <input type="url" id="media-link" placeholder="https://..." required>
+
+                    <label>📌 Tiêu đề tác phẩm</label>
+                    <input type="text" id="work-title" placeholder="VD: Work #001 • Tên gì đó" required>
+
+                    <label>📝 Loại tác phẩm</label>
+                    <select id="work-type">
+                        <option value="Ảnh Nghệ Thuật">Ảnh Nghệ Thuật</option>
+                        <option value="Sáng Tạo Kỹ Thuật Số">Sáng Tạo Kỹ Thuật Số</option>
+                        <option value="Video Định Dạng Ngắn">Video Định Dạng Ngắn</option>
+                    </select>
+
+                    <label>📅 Ngày đăng</label>
+                    <input type="date" id="work-date" required>
+
+                    <label>📄 Nội dung / Mô tả</label>
+                    <textarea id="work-desc" rows="5" placeholder="Viết mô tả, ý nghĩa tác phẩm..." required></textarea>
+
+                    <div class="form-buttons">
+                        <button type="reset" id="btn-cancel" class="btn gray" style="display:none;">❌ Hủy</button>
+                        <button type="submit" class="btn gold">✅ Lưu Lại</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="admin-list-box">
+                <h2>📋 Danh Sách Tác Phẩm</h2>
+                <div id="admin-work-list" class="admin-list">
+                    <p class="empty-txt">Chưa có tác phẩm nào. Hãy thêm ở trên!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
