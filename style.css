@@ -267,3 +267,17 @@ link, [rel*="icon"], meta {
 body:has(> link[rel*="icon"]:only-child) {
     background: var(--cream);
 }
+.hero-tagline {
+    font-size: 17px;
+    color: var(--brown-medium);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto 16px;
+    line-height: 1.7;
+}
+@media (max-width:768px) {
+    .hero-tagline {
+        font-size: 15px;
+        padding: 0 10px;
+    }
+}
