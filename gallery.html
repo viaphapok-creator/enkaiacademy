@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery — Enkai Art Agency</title>
+    <title>Works — Enkai Art Agency</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="site-header">
         <a href="index.html" class="logo-link">
-            <img src="logo.png" alt="Enkai Art Agency Logo" class="logo-img">
+            <span class="logo-text">Enkai Art</span>
         </a>
         <nav class="main-nav">
+            <a href="index.html">Home</a>
             <a href="gallery.html" class="active">Works</a>
             <a href="index.html#about">About</a>
             <a href="index.html#contact">Contact</a>
@@ -21,13 +22,15 @@
 
     <section class="gallery">
         <div class="section-head">
-            <h2>Collection</h2>
-            <p>Every artwork carries its own unique story</p>
+            <h2>All Artworks</h2>
+            <p>Explore the full collection by Tran Quang Trung</p>
             <div class="search-wrap">
-                <input type="text" class="search-box" placeholder="Search artworks...">
+                <input type="text" class="search-box" placeholder="Search works...">
             </div>
         </div>
-        <div class="art-grid" id="artGrid"></div>
+        <div class="art-grid" id="artGrid">
+            <p style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted);">Loading artworks...</p>
+        </div>
     </section>
 
     <script src="script.js"></script>
