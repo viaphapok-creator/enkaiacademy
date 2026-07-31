@@ -256,3 +256,14 @@ a {text-decoration:none;color:inherit;}
     .art-grid {grid-template-columns:1fr;gap:28px;}
     .work-single {padding:20px;}
 }
+/* === FIX: Ngăn ảnh/logo bị hiển thị to toàn trang === */
+img:not(.art-media img):not(.work-detail-img) {
+    max-width: 100%;
+    height: auto;
+}
+link, [rel*="icon"], meta {
+    display: none !important;
+}
+body:has(> link[rel*="icon"]:only-child) {
+    background: var(--cream);
+}
