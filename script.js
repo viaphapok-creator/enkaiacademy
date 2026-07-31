@@ -105,7 +105,7 @@ function renderWorkDetail(){
                     : `<img src="${work.media}" alt="${work.title}" class="work-detail-img">`
                 }
             </div>
-            <p class="work-author">Enkai Art Agency</p>
+            <p class="work-author">Tran Quang Trung</p>
             <h1>${work.title}</h1>
             <span class="work-date">${work.date || 'Unknown date'}</span>
             <div class="work-body">
